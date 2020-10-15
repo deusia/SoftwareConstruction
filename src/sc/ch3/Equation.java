@@ -64,8 +64,6 @@ public abstract class Equation {
         }
 	}
 	
-	protected abstract int calculate();
-	
 	public boolean isEqual(Equation e){
         //判断两个算式是否相等的方法
         boolean b = false;
@@ -80,8 +78,7 @@ public abstract class Equation {
 	
 	//将算式转换为字符串类型 	45+32
 	public String toString(){
-		return this.left+""+this.op+this.right;
-		
+		return ""+this.left+this.op+this.right;
 	}
 	//将算式转换为字符串类型 	45+32=
 	public String toString2(){
@@ -95,17 +92,16 @@ public abstract class Equation {
 	}
 	
 	public void generateEquation(char op){
-			
-	}
+		do{
+			left=generateRandom(MIN, MAX);
+			right=generateRandom(MIN, MAX);
+			result=calculate();
+		}while(!isBetween(result, MIN, MAX));
+		
+		this.setOp(op);
+	}		
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	protected abstract int calculate();
 	
 
 }
