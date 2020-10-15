@@ -6,8 +6,6 @@ public abstract class Equation {
 	
 	private final int MAX=100;
 	private final int MIN =0;
-	private final int COUNT=50;
-	
 	private int left;
 	private int right;
 	private int result;
