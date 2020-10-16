@@ -122,7 +122,6 @@ public class Exercise {
 
     //构造习题类中遍历算式的方法
     public boolean hasNext() {
-
         return index < exercise.size();
     }
 

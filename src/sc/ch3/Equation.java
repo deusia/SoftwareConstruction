@@ -11,10 +11,6 @@ public abstract class Equation {
     private int result;
     private char op;
 
-    public Equation() {
-
-    }
-
     public int getLeft() {
         return left;
     }
@@ -47,14 +43,14 @@ public abstract class Equation {
         this.op = op;
     }
 
+    //生成随机的整数的方法
     private int generateRandom(int min, int max) {
-        //生成随机的整数的方法
         Random r = new Random();
         return r.nextInt(max - min + 1);
     }
 
+    //判断运算结在某个值得范围内的方法
     private boolean isBetween(int value, int min, int max) {
-        //判断运算结在某个值得范围内的方法
         if (value >= min && value <= max) {
             return true;
         } else {
@@ -102,6 +98,4 @@ public abstract class Equation {
     }
 
     protected abstract int calculate();
-
-
 }
