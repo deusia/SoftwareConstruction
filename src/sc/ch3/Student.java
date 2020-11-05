@@ -1,44 +1,102 @@
 package sc.ch3;
 
-public class Student {
-    private static Exercise exercise;
+import sc.ch4.Answer;
+import sc.ch4.Check;
 
+import java.util.Scanner;
+
+public class Student {
+    private Exercise exercise;
+    private Answer answer;
+    private Check check;
+    private Scanner sc;
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public Check getCheck() {
+        return check;
+    }
+
+    public Exercise getExercise() {
+        return exercise;
+    }
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setCheck(Check check) {
+        this.check = check;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
 
     public Student() {
 
     }
 
-    public static void printExercise() {
-        int i = 1;
-        while (exercise.hasNext()) {
-            System.out.print("(" + i + ")" + exercise.next().toString3());
+//    public static void printExercise() {
+//        int i = 1;
+//        while (exercise.hasNext()) {
+//            System.out.print("(" + i + ")" + exercise.next().toString3());
+//
+//            if (i % 5 == 0) {
+//                System.out.println();
+//            } else {
+//                System.out.print("\t");
+//            }
+//            exercise.setIndex(i++);
+//
+//        }
+//        System.out.println();
+//        exercise.getExercise().clear();
+//        exercise.setIndex(0);
+//
+//    }
 
-            if (i % 5 == 0) {
-                System.out.println();
-            } else {
-                System.out.print("\t");
-            }
-            exercise.setIndex(i++);
-
-        }
-        System.out.println();
-        exercise.getExercise().clear();
+//    public static void main(String[] args) {
+//
+//        exercise = new Exercise();
+//        System.out.println("--------------------------å¦‚ä¸‹æ˜¯æ··åˆè¿ç®—ä¹ é¢˜----------------------");
+//        exercise.generateExercise();
+//        printExercise();
+//        System.out.println("--------------------------å¦‚ä¸‹æ˜¯åŠ æ³•è¿ç®—ä¹ é¢˜----------------------");
+//        exercise.generateAddExercise();
+//        printExercise();
+//        System.out.println("--------------------------å¦‚ä¸‹æ˜¯å‡æ³•è¿ç®—ä¹ é¢˜----------------------");
+//        exercise.generateSubExercise();
+//        printExercise();
+//    }
+    private void practiceOneByOne(){
+        answer=new Answer();
         exercise.setIndex(0);
-
+        int i=1;
+        System.out.println("è¯·è¾“å…¥ç­”æ¡ˆåå›è½¦ç»§ç»­ä¸‹ä¸€é¢˜");
+        while(exercise.hasNext()){
+            System.out.println("("+(i++)+")"+exercise.next().toString2());//æ‰“å°ä¹ é¢˜ç®—å¼
+            answer.add(sc.nextInt());//è¯»å…¥é”®ç›˜ç­”æ¡ˆ
+        }
+        check.check(exercise,answer);
+        check.printCheck();
     }
 
     public static void main(String[] args) {
-
-        exercise = new Exercise();
-        System.out.println("--------------------------ÈçÏÂÊÇ»ìºÏÔËËãÏ°Ìâ----------------------");
-        exercise.generateExercise();
-        printExercise();
-        System.out.println("--------------------------ÈçÏÂÊÇ¼Ó·¨ÔËËãÏ°Ìâ----------------------");
-        exercise.generateAddExercise();
-        printExercise();
-        System.out.println("--------------------------ÈçÏÂÊÇ¼õ·¨ÔËËãÏ°Ìâ----------------------");
-        exercise.generateSubExercise();
-        printExercise();
+        Student s=new Student();
+        s.exercise=new Exercise();
+        s.exercise.getExercise();
+        System.out.println("aaaaaaaaaaaaaaaaaaaa");
+        s.exercise.printExercise();
     }
-
 }

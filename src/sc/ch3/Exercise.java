@@ -46,7 +46,7 @@ public class Exercise {
         exercise = new ArrayList<Equation>();
     }
 
-    //ÅÐ¶ÏÒ»¸öËãÊÇÊÇ·ñÔÚµ±Ç°Ï°ÌâÖÐ´æÔÚ
+    //ï¿½Ð¶ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Úµï¿½Ç°Ï°ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
     public boolean occursIn(Equation e) {
         boolean b = false;
         for (Equation equation : exercise) {
@@ -58,9 +58,9 @@ public class Exercise {
         return b;
     }
 
-    //¹¹Ôì»ìºÏÏ°ÌâµÄ·½·¨
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
     public void generateExercise() {
-        int i = 0;//i±íÊ¾µ±Ç°Ï°ÌâÖÐÒÑ¾­¹¹ÔìµÄÊýÁ¿
+        int i = 0;//iï¿½ï¿½Ê¾ï¿½ï¿½Ç°Ï°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Random r = new Random();
 
         while (i < count) {
@@ -79,7 +79,7 @@ public class Exercise {
     }
 
     public void generateAddExercise() {
-        int i = 0;//i±íÊ¾µ±Ç°Ï°ÌâÖÐÒÑ¾­¹¹ÔìµÄÊýÁ¿
+        int i = 0;//iï¿½ï¿½Ê¾ï¿½ï¿½Ç°Ï°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         while (i < count) {
             Equation e;
@@ -92,7 +92,7 @@ public class Exercise {
     }
 
     public void generateSubExercise() {
-        int i = 0;//i±íÊ¾µ±Ç°Ï°ÌâÖÐÒÑ¾­¹¹ÔìµÄÊýÁ¿
+        int i = 0;//iï¿½ï¿½Ê¾ï¿½ï¿½Ç°Ï°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         while (i < count) {
             Equation e;
@@ -105,11 +105,11 @@ public class Exercise {
     }
 
 
-    //Êä³öÏ°Ìâ
+    //ï¿½ï¿½ï¿½Ï°ï¿½ï¿½
     public void printExercise() {
         int i = 0;
         for (Equation e : exercise) {
-            i++;//±íÊ¾µ±Ç°ÒÑ¾­Êä³öµÄËãÊÇ
+            i++;//ï¿½ï¿½Ê¾ï¿½ï¿½Ç°ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             System.out.print("(" + i + ")" + e.toString3());
             if (i % 5 == 0) {
                 System.out.println();
@@ -120,17 +120,29 @@ public class Exercise {
         exercise.clear();
     }
 
-    //¹¹ÔìÏ°ÌâÀàÖÐ±éÀúËãÊ½µÄ·½·¨
+    //ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½Ä·ï¿½ï¿½ï¿½
     public boolean hasNext() {
         return index < exercise.size();
     }
 
-    //»ñÈ¡ÏÂÒ»¸öËãÊÇµÄ·½·¨
+    //ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÄ·ï¿½ï¿½ï¿½
     public Equation next() {
         if (index < exercise.size()) {
             return exercise.get(index);
         } else {
             return null;
         }
+    }
+    public boolean add(Equation e){
+        if (index<count){
+            exercise.add(e);
+            index++;
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public int size(){
+        return exercise.size();
     }
 }
