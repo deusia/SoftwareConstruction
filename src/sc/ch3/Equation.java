@@ -3,99 +3,92 @@ package sc.ch3;
 import java.util.Random;
 
 public abstract class Equation {
+	
+	private final int MAX = 100;
+	private final int MIN = 0;
+//	private final int COUNT = 50;
+	private int left,right,result;
+	private char op;
+	public int getLeft() {
+		return left;
+	}
+	public void setLeft(int left) {
+		this.left = left;
+	}
+	public int getRight() {
+		return right;
+	}
+	public void setRight(int right) {
+		this.right = right;
+	}
+	public int getResult() {
+		return result;
+	}
+	public void setResult(int result) {
+		this.result = result;
+	}
+	public char getOp() {
+		return op;
+	}
+	public void setOp(char op) {
+		this.op = op;
+	}
+	
+	public Equation(){
+		
+	}
+	//ç”Ÿæˆéšæœºæ•´æ•°çš„æ–¹æ³•
+	private int generateRandom(int min,int max)
+	{
+		Random r = new Random();
+		return r.nextInt(max-min+1)+min;
+	}
+	//åˆ¤æ–­è¿ç®—ç»“æžœåœ¨æŸä¸ªèŒƒå›´å†…çš„æ–¹æ³•
+	private boolean isBetween (int value,int min,int max)
+	{
+		return value>=min&&value<=max;
+	}
+	protected abstract int calculate();
+	
+	//åˆ¤æ–­ä¸¤ä¸ªç®—å¼æ˜¯å¦ç›¸ç­‰
+	public boolean isEqual( Equation e)
+	{
+		boolean b =false;
+		if(e.getOp()!=this.getOp())
+		{
+			b=false;
+		}else
+		{
+			b=e.getLeft()==this.getLeft()&&e.getRight()==this.getRight();
+		}
+		return b;
+	}
+	//å°†ç®—å¼è½¬æ¢å­—ç¬¦ä¸²ç±»åž‹âˆ¶25+31
+	public 	String toString()
+	{
+		return " "+this.getLeft()+this.getOp()+this.getRight();
+	}
+	//å°†ç®—å¼è½¬æ¢å­—ç¬¦ä¸²ç±»åž‹âˆ¶25+31=
+	public 	String toString2()
+	{
+		return " "+this.getLeft()+this.getOp()+this.getRight()+"=";
+	}
 
-    private final int MAX = 100;
-    private final int MIN = 0;
-    private int left;
-    private int right;
-    private int result;
-    private char op;
+	//å°†ç®—å¼è½¬æ¢å­—ç¬¦ä¸²ç±»åž‹âˆ¶25+31=56
+	public 	String toString3()
+	{
+		return " "+this.getLeft()+this.getOp()+this.getRight()+"="+this.getResult();	
+	}
+	public void generateEquation(char op)//ç”Ÿæˆä¸€ä¸ªç®—æ˜¯æ–¹æ³•çš„å…¬å…±éƒ¨åˆ†æ“ä½œ
+	{
+		do{
+			left = generateRandom(MIN,MAX);
+			right = generateRandom(MIN,MAX);
+			result = calculate(); 
+		}while(! isBetween(result,MIN,MAX));
+			
+		this .setOp(op);
+	}
 
-    public int getLeft() {
-        return left;
-    }
 
-    public void setLeft(int left) {
-        this.left = left;
-    }
-
-    public int getRight() {
-        return right;
-    }
-
-    public void setRight(int right) {
-        this.right = right;
-    }
-
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
-
-    public char getOp() {
-        return op;
-    }
-
-    public void setOp(char op) {
-        this.op = op;
-    }
-
-    //Éú³ÉËæ»úµÄÕûÊýµÄ·½·¨
-    private int generateRandom(int min, int max) {
-        Random r = new Random();
-        return r.nextInt(max - min + 1);
-    }
-
-    //ÅÐ¶ÏÔËËã½áÔÚÄ³¸öÖµµÃ·¶Î§ÄÚµÄ·½·¨
-    private boolean isBetween(int value, int min, int max) {
-        if (value >= min && value <= max) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isEqual(Equation e) {
-        //ÅÐ¶ÏÁ½¸öËãÊ½ÊÇ·ñÏàµÈµÄ·½·¨
-        boolean b = false;
-        if (this.getOp() != e.getOp()) {
-            b = false;
-        } else {
-            b = (this.getLeft() == e.getLeft() && this.getRight() == e.getRight());
-        }
-
-        return b;
-    }
-
-    //½«ËãÊ½×ª»»Îª×Ö·û´®ÀàÐÍ 	45+32
-    public String toString() {
-        return "" + this.left + this.op + this.right;
-    }
-
-    //½«ËãÊ½×ª»»Îª×Ö·û´®ÀàÐÍ 	45+32=
-    public String toString2() {
-        String s = toString();
-        return s + "=";
-    }
-
-    //½«ËãÊ½×ª»»Îª×Ö·û´®ÀàÐÍ 	45+32=87
-    public String toString3() {
-        String s = toString2();
-        return s + this.result;
-    }
-
-    public void generateEquation(char op) {
-        do {
-            left = generateRandom(MIN, MAX);
-            right = generateRandom(MIN, MAX);
-            result = calculate();
-        } while (!isBetween(result, MIN, MAX));
-
-        this.setOp(op);
-    }
-
-    protected abstract int calculate();
 }

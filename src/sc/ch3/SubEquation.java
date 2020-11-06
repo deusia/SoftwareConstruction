@@ -1,26 +1,30 @@
+/**
+ * 
+ */
 package sc.ch3;
 
-public class SubEquation extends Equation{
-	
+/**
+ * @author Administrator
+ *
+ */
+public class SubEquation extends Equation {
+
 	public SubEquation(){
 		generateEquation('-');
 	}
-	
 	public SubEquation(String s){
-		int index=s.indexOf("-");
-		int length =s.length();
+		int index = s.indexOf("-");
+		int length = s.length();
 		
-		this.setLeft(Integer.parseInt(s.substring(0,index)));
-		this.setRight(Integer.parseInt(s.substring(index+1,length)));
-		this.setOp('-');
+		this .setLeft(Integer.parseInt(s.substring(0,index)));
+		this .setRight(Integer.parseInt(s.substring(index+1,length)));
+		//this .setOp('+');
+		this.setOp(s.charAt(index));//å–indexçš„å­—ç¬¦
 		this.setResult(calculate());
 	}
-	
-	@Override
 	protected int calculate() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
-		return this.getLeft()-this.getRight();
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
+		return  this.getLeft()-this.getRight();
 	}
-	
-	
+
 }

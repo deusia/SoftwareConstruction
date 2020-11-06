@@ -1,148 +1,155 @@
+/**
+ * 
+ */
 package sc.ch3;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author Administrator
+ *
+ */
 public class Exercise {
-    private int count = 50;
-    private int index;
 
-    public int getCount() {
-        return count;
-    }
+	private  int COUNT = 50;
+	private  int index =0;//标识习题中当前算式的序号
+	private ArrayList<Equation> exercise = null;
+	
+	public int getCOUNT() {
+		return COUNT;
+	}
 
-    public void setCount(int count) {
-        this.count = count;
-    }
+	public void setCOUNT(int cOUNT) {
+		COUNT = cOUNT;
+	}
 
-    public int getIndex() {
-        return index;
-    }
+	public int getIndex() {
+		return index;
+	}
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
-    public AbstractList<Equation> getExercise() {
-        return exercise;
-    }
+	public ArrayList<Equation> getExercise() {
+		return exercise;
+	}
 
-    public void setExercise(AbstractList<Equation> exercise) {
-        this.exercise = exercise;
-    }
+	public void setExercise(ArrayList<Equation> exercise) {
+		this.exercise = exercise;
+	}
 
-    private AbstractList<Equation> exercise = null;
-
-    public Exercise() {
-        index = 0;
-        exercise = new ArrayList<Equation>();
-
-    }
-
-    public Exercise(int count) {
-        this.setCount(count);
-        index = 0;
-        exercise = new ArrayList<Equation>();
-    }
-
-    //�ж�һ�������Ƿ��ڵ�ǰϰ���д���
-    public boolean occursIn(Equation e) {
-        boolean b = false;
-        for (Equation equation : exercise) {
-            if (equation.isEqual(e)) {
-                b = true;
-                break;
-            }
-        }
-        return b;
-    }
-
-    //������ϰ��ķ���
-    public void generateExercise() {
-        int i = 0;//i��ʾ��ǰϰ�����Ѿ����������
-        Random r = new Random();
-
-        while (i < count) {
-            Equation e;
-            if (r.nextInt(2) == 1) {
-                e = new AddEquation();
-            } else {
-                e = new SubEquation();
-            }
-
-            if (!occursIn(e)) {
-                exercise.add(e);
-                i++;
-            }
-        }
-    }
-
-    public void generateAddExercise() {
-        int i = 0;//i��ʾ��ǰϰ�����Ѿ����������
-
-        while (i < count) {
-            Equation e;
-                e = new AddEquation();
-            if (!occursIn(e)) {
-                exercise.add(e);
-                i++;
-            }
-        }
-    }
-
-    public void generateSubExercise() {
-        int i = 0;//i��ʾ��ǰϰ�����Ѿ����������
-
-        while (i < count) {
-            Equation e;
-            e = new SubEquation();
-            if (!occursIn(e)) {
-                exercise.add(e);
-                i++;
-            }
-        }
-    }
-
-
-    //���ϰ��
-    public void printExercise() {
-        int i = 0;
-        for (Equation e : exercise) {
-            i++;//��ʾ��ǰ�Ѿ����������
-            System.out.print("(" + i + ")" + e.toString3());
-            if (i % 5 == 0) {
-                System.out.println();
-            } else {
-                System.out.print("\t");
-            }
-        }
-        exercise.clear();
-    }
-
-    //����ϰ�����б�����ʽ�ķ���
-    public boolean hasNext() {
-        return index < exercise.size();
-    }
-
-    //��ȡ��һ�����ǵķ���
-    public Equation next() {
-        if (index < exercise.size()) {
-            return exercise.get(index);
-        } else {
-            return null;
-        }
-    }
-    public boolean add(Equation e){
-        if (index<count){
-            exercise.add(e);
-            index++;
-            return true;
-        }else {
-            return false;
-        }
-    }
-    public int size(){
-        return exercise.size();
-    }
+	public Exercise() {
+		index = 0;
+		exercise = new ArrayList<Equation>();
+	}
+	
+	public Exercise (int count)//构造任意数量的习题
+	{
+		this.setCOUNT(count);
+		index = 0;
+		exercise = new ArrayList<Equation>();
+	}
+	
+	//判断一个算是是否已经存在
+	public boolean occursIn(Equation e)
+	{
+		boolean b = false;
+		for(Equation equation: exercise){
+			if(equation.isEqual(e)){
+				b = true;
+				break;
+			}
+		}
+		return b;
+	}
+	
+	//构造混合习题
+	public void generateExercise(){
+		int i = 0;//表示当前习题中构造习题的数量
+		Random r = new Random();
+		while(i<COUNT){
+			Equation e;
+			if (r.nextInt(2)==1){
+				e= new AddEquation();
+			}else{
+				e = new SubEquation();
+			}
+			if(! occursIn(e))
+			{
+				exercise.add(e);
+				i++;
+			}
+		}
+	}
+	
+	//生成加法习题
+	public void generateAddExercise(){
+		int  i = 0;
+		while(i<COUNT){
+			Equation e = new AddEquation();
+			if(! occursIn(e))
+			{
+				exercise.add(e);
+				i++;
+			}
+		}
+		
+	}
+	//生成见法习题
+	public void generateSubExercise(){
+		int  i = 0;
+		while(i<COUNT){
+			Equation e = new SubEquation();
+			if(! occursIn(e))
+			{
+				exercise.add(e);
+				i++;
+			}
+		}
+		
+	}
+	//输出习题
+	public void printExercise(){
+		int i = 0;
+		for(Equation e:exercise){
+			i++;//表示当前已经输出的算式
+			System.out.print("("+i+")"+e.toString());
+			if(i%5==0)
+			{
+				System.out.println();
+			}
+			else
+			{
+				System.out.print("\t");
+			}
+		}
+	}
+   //构造习题类中遍历算式的方法
+	public boolean hasNext()
+	{
+		return index<exercise.size();
+	}
+	//获取下一个算式
+	public Equation next(){
+		if(index <exercise.size()){
+			return exercise.get(index++);
+		}else
+		{
+			return null;
+		}
+	}
+	
+	public boolean add(Equation e){//变相的叠加器，把新的算式加入到习题
+		if(index <COUNT){
+			exercise.add(e);
+			index++;
+			return true;
+		}else{
+			return false;
+			}
+	}
+	
+	public int size(){return exercise.size();}
 }
