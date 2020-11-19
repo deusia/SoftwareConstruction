@@ -1,15 +1,7 @@
-/**
- * 
- */
 package sc.ch3;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-/**
- * @author Administrator
- *
- */
 public class Exercise {
 
 	private  int COUNT = 50;

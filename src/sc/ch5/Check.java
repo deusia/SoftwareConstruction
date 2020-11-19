@@ -1,11 +1,11 @@
-package sc.ch4;
+package sc.ch5;
+
+import sc.ch3.Exercise;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-
-import sc.ch3.Exercise;
 
 public class Check {
 
@@ -45,6 +45,7 @@ public class Check {
 
 
 	public Check() {
+		// TODO 自动生成的构造函数存根
 		right=0;
 		wrong=0;
 				

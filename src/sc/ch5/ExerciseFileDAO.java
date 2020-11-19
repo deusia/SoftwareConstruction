@@ -1,14 +1,14 @@
-package sc.ch4;
+package sc.ch5;
+
+import sc.ch3.AddEquation;
+import sc.ch3.Exercise;
+import sc.ch3.SubEquation;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Scanner;
-
-import sc.ch3.AddEquation;
-import sc.ch3.Exercise;
-import sc.ch3.SubEquation;
 
 public class ExerciseFileDAO {
 	public ExerciseFileDAO() {

@@ -1,9 +1,8 @@
-package sc.ch4;
-
-import java.util.Scanner;
+package sc.ch5;
 
 import sc.ch3.Exercise;
 import sc.ch3.Student;
+import java.util.Scanner;
 
 public class Practicetest {
 
@@ -15,14 +14,12 @@ public class Practicetest {
 			{},{},{},{},{},{}
 	};
 	static Scanner sc = new Scanner(System.in);
+
 	public Practicetest() {
-		// TODO Auto-generated constructor stub
-		
+
+
 	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
