@@ -15,10 +15,9 @@ public class SubEquation extends Equation {
 	public SubEquation(String s){
 		int index = s.indexOf("-");
 		int length = s.length();
-		
+
 		this .setLeft(Integer.parseInt(s.substring(0,index)));
 		this .setRight(Integer.parseInt(s.substring(index+1,length)));
-		//this .setOp('+');
 		this.setOp(s.charAt(index));//取index的字符
 		this.setResult(calculate());
 	}

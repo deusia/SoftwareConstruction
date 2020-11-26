@@ -66,18 +66,18 @@ public abstract class Equation {
 	//将算式转换字符串类型∶25+31
 	public 	String toString()
 	{
-		return " "+this.getLeft()+this.getOp()+this.getRight();
+		return ""+this.getLeft()+this.getOp()+this.getRight();
 	}
 	//将算式转换字符串类型∶25+31=
 	public 	String toString2()
 	{
-		return " "+this.getLeft()+this.getOp()+this.getRight()+"=";
+		return ""+this.getLeft()+this.getOp()+this.getRight()+"=";
 	}
 
 	//将算式转换字符串类型∶25+31=56
 	public 	String toString3()
 	{
-		return " "+this.getLeft()+this.getOp()+this.getRight()+"="+this.getResult();	
+		return ""+this.getLeft()+this.getOp()+this.getRight()+"="+this.getResult();
 	}
 	public void generateEquation(char op)//生成一个算是方法的公共部分操作
 	{

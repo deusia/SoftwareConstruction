@@ -45,6 +45,15 @@ public class Parents {
 
     private int count;
     private int n;
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
+
     private Scanner sc;
     private ExerciseFileDAO eDAO;
 
@@ -126,9 +135,10 @@ public class Parents {
         answer.writeAnswerToFile(path + fileName[index - 1].replaceAll("exercise", "answer"));
         Check check = new Check();
         check.check(exercise, answer);
-        check.writeCheckToFile(path + fileName[index - 1].replaceAll("exercise", "answer"));
+        check.writeCheckToFile(path + fileName[index - 1].replaceAll("exercise", "check"));
         check.printCheck();
     }
+
 
     class FileFilter implements FilenameFilter {
         public FileFilter() {
