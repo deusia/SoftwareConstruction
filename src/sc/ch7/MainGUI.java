@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import sc.ch3.Exercise;
 import sc.ch4.Answer;
+import sc.ch4.Check;
 
 public class MainGUI extends JFrame {
 
@@ -232,11 +233,11 @@ public class MainGUI extends JFrame {
         } else if (arg0.getActionCommand() == "onlineSub") {
             equationCount = Integer.parseInt(JOptionPane.showInputDialog("请输入减法算式的数量"));
             exercise = new Exercise(equationCount);
-            exercise.generateAddExercise();
+            exercise.generateSubExercise();
         } else if (arg0.getActionCommand() == "onlineMix") {
             equationCount = Integer.parseInt(JOptionPane.showInputDialog("请输入混合算式的数量"));
             exercise = new Exercise(equationCount);
-            exercise.generateAddExercise();
+            exercise.generateExercise();
         }
 
         answer = new Answer();
@@ -251,6 +252,10 @@ public class MainGUI extends JFrame {
         update();//自定义刷新图形界面的方法
     }
 
+    public void outline(ActionEvent arg0){
+
+    }
+
     public void update() {
         //i表示算式在总共习题数量里面的序号；j表示当前页里面算式的编号；也表示JTextField图形组件
         for (int i = (currentPage - 1) * PASE_SIZE, j = 0; i < currentPage * PASE_SIZE; i++, j++) {
@@ -259,17 +264,83 @@ public class MainGUI extends JFrame {
                 tEquation[j].setBackground(panelCenter.getBackground());
                 tEquation[j].setVisible(true);
 
-                if (answer.get(i) != -1){
+                if (answer.get(i) != -1) {
                     tAnswer[j].setText(Integer.toString((answer.get(i))));
-                }else {
-                    tAnswer[j].setText(Integer.toString(answer.get(i)));
+                } else {
+                    tAnswer[j].setText("");
                 }
-
                 tAnswer[j].setVisible(true);
-            }else {
+            } else {
                 tEquation[j].setVisible(false);
                 tAnswer[j].setVisible(false);
             }
         }
+        //如果椰大于1，显示翻页按钮
+        preButton.setVisible(pages > 1);
+        nextButton.setVisible(pages > 1);
+        preButton.setEnabled(currentPage > 1);//当前页码大于1的时候可以点击按钮前一页
+        nextButton.setEnabled(currentPage < pages);//当前页码小雨总页数的时候可以点击后一页f
+        pageIndex.setText(currentPage + "/" + pages);
+        check.setVisible(true);
+        labelResult.setVisible(true);
+        if (currentPage == pages) {
+            check.setEnabled(true);
+        } else {
+            check.setEnabled(false);
+        }
+    }
+
+    public void prePage() {
+        for (int i = (currentPage - 1) * PASE_SIZE, j = 0; i < currentPage * PASE_SIZE; i++, j++) {
+            if (i < equationCount && tAnswer[j].getText() != null && tAnswer[j].getText().length() > 0) {
+                if (tAnswer[j].getText().matches("^[0-9]*$")) {
+                    answer.set(i, Integer.parseInt(tAnswer[j].getText()));
+                }
+            }
+        }
+        currentPage--;
+        update();
+    }
+
+    public void nextPage() {
+        for (int i = (currentPage - 1) * PASE_SIZE, j = 0; i < currentPage * PASE_SIZE; i++, j++) {
+            if (i < equationCount && tAnswer[j].getText() != null && tAnswer[j].getText().length() > 0) {
+                if (tAnswer[j].getText().matches("^[0-9]*$")) {
+                    answer.set(i, Integer.parseInt(tAnswer[j].getText()));
+                }
+            }
+        }
+        currentPage++;
+        update();
+    }
+
+    public void check() {
+        for (int i = (currentPage - 1) * PASE_SIZE, j = 0; i < currentPage * PASE_SIZE && j < equationCount % PASE_SIZE; i++, j++) {
+            if (i < equationCount && tAnswer[j].getText() != null && tAnswer[j].getText().length() > 0) {
+                if (tAnswer[j].getText().matches("^[0-9]*$")) {
+                    answer.set(i, Integer.parseInt(tAnswer[j].getText()));
+                }
+            }
+        }
+        Check ch=new Check();
+        ch.check(exercise,answer);
+        labelResult.setText("正确:"+ch.getRight()+";错误:"+ch.getWrong());
+    }
+    public void checkEx(ActionEvent arg0){
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
