@@ -7,9 +7,17 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 import sc.ch3.Exercise;
 import sc.ch4.Answer;
 import sc.ch4.Check;
+
 
 public class MainGUI extends JFrame {
 
@@ -252,7 +260,7 @@ public class MainGUI extends JFrame {
         update();//自定义刷新图形界面的方法
     }
 
-    public void outline(ActionEvent arg0){
+    public void outline(ActionEvent arg0) {
 
     }
 
@@ -322,13 +330,38 @@ public class MainGUI extends JFrame {
                 }
             }
         }
-        Check ch=new Check();
-        ch.check(exercise,answer);
-        labelResult.setText("正确:"+ch.getRight()+";错误:"+ch.getWrong());
+        Check ch = new Check();
+        ch.check(exercise, answer);
+        labelResult.setText("正确:" + ch.getRight() + ";错误:" + ch.getWrong());
+        drawPieChart(ch);//自定义的饼图绘制方法
     }
-    public void checkEx(ActionEvent arg0){
+
+    public void drawPieChart(Check check) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        dataset.setValue("正确:" + check.getRight(), check.getRight());
+        dataset.setValue("错误:" + check.getWrong(), check.getWrong());
+        JFreeChart chart = ChartFactory.createPieChart("批改统计", (PieDataset) dataset, false, false, false);
+        PiePlot plot = (PiePlot) chart.getPlot();//饼图的每个片区数据
+        chart.setBackgroundPaint(Color.white);//设置片区的背景色
+        plot.setForegroundAlpha(1.0f);//设置片区的透明度
+        plot.setCircular(true);
+        plot.setLabelFont(new Font("宋体", Font.BOLD, 20));
+        Font font = new Font("黑体", Font.CENTER_BASELINE, 20);
+        TextTitle title = chart.getTitle();
+        title.setFont(font);
+        chart.setTitle(title);
+        ChartPanel cPanel = new ChartPanel(chart);
+        JFrame f = new JFrame();
+        f.setBounds(300, 300, 300, 300);
+        f.add(cPanel);
+        f.setVisible(true);
+    }
+
+    public void checkEx(ActionEvent arg0) {
 
     }
+
+
 }
 
 
